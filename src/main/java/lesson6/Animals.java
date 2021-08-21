@@ -1,44 +1,42 @@
 package lesson6;
 
-public class Animals{
+public abstract class Animals {
     protected String name;
-    protected int sail;
-    protected int run;
+    static int animalCount;
 
-    public Animals(String name, int sail, int run) {
+    public Animals(String name) {
         this.name = name;
-        this.sail = sail;
-        this.run = run;
+        animalCount++;
     }
 
     public String getName() {
         return name;
     }
 
+    public static int getAnimalCount() {
+        return animalCount;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
-    public int getSail() {
-        return sail;
-    }
+    public abstract int sailDefault();
 
-    public int getRun() {
-        return run;
-    }
+    public abstract int runDefault();
 
-    public void distanceSail(int distance) {
-        if (distance < sail) {
+    public void sail(int distance) {
+        if (distance > sailDefault()) {
             System.out.println(name + " решил не плыть (︶︹︺)");
         } else {
-            System.out.println(name + "проплыл" + distance + "метров");
+            System.out.println(name + " проплыл " + distance + " м.");
         }
     }
-    public void distanceRun(int distance) {
-        if (distance < run) {
-            System.out.println(name + " прилег отдохнуть (－ω－) zzZ");
+    public void run(int distance) {
+        if (distance > runDefault()) {
+            System.out.println(name + " не добежал и прилег отдохнуть на " + distance + "-метровке (－ω－) zzZ");
         } else {
-            System.out.println(name + "проплыл" + distance + "метров");
+            System.out.println(name + " пробежал " + distance + " м.");
         }
     }
 }
